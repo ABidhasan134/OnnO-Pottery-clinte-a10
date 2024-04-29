@@ -15,6 +15,8 @@ import CardDetails from './Home/components/cardDitails.jsx';
 import AddCraft from './addcraft/addCraft.jsx';
 import ArtAndCraft from './artAndCraft/artAndCraft.jsx';
 import CraftDetails from './artAndCraft/components/craftDetails.jsx';
+import MyList from './myList/myList.jsx';
+import UpdateInfo from './update/updateInfo.jsx';
 
 const router=createBrowserRouter([
 {
@@ -60,6 +62,16 @@ const router=createBrowserRouter([
       {
         path: "/addcraft",
         element: <PriveteRoute><AddCraft></AddCraft></PriveteRoute>
+      },
+      {
+        path: "/mycraft",
+        element: <PriveteRoute><MyList></MyList> </PriveteRoute>,
+        loader: ()=>fetch("http://localhost:5000/newCraft")
+      },
+      {
+        path: "/updateInfo/:id",
+        element: <PriveteRoute><UpdateInfo></UpdateInfo></PriveteRoute>,
+        loader: ({params})=>params.id
       }
     ]
 }
