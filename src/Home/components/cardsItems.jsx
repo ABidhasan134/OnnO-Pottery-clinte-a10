@@ -18,7 +18,9 @@ const CardsItems = ({ craftdata }) => {
       <div className="card card-compact w-auto bg-base-100 shadow-sm border-2">
         <figure className="lg:h-96 md:h-72 h-48 p-2">
           <img src={craftdata.image} alt="Photo of property" />
+          {/* <img src="https://i.ibb.co/26rrDJs/img-5.jpg" alt="img-5" border="0" /> */}
         </figure>
+
         <div className="card-body">
           <h2 className="card-title">{craftdata.item_name}</h2>
           <p>{craftdata.short_description}</p>
@@ -49,6 +51,7 @@ const CardsItems = ({ craftdata }) => {
           </div>
           <hr className="border-1 border-sky-400 w-full mt-6 border-dashed" />
           {/* price and status end */}
+          
           <Link
             to={`/details/${craftdata._id}`}
             className="btn border-none bg-sky-400 hover:bg-sky-800 hover:text-white"

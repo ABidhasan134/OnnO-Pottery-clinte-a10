@@ -46,17 +46,8 @@ const AuthProvider = ({children}) => {
   },[]);
   // context value as object
   
-  // card information loaded
-  useEffect(()=>{
-      fetch("./data.json")
-      .then(result=>result.json())
-      .then((data)=>{
-        // console.log(data)
-        setCardInfo(data)
-      })
-      .catch((error)=>console.log(error))
-  },[])
-  const authInfo={user,createUser,logInuser,logOut,loading,cardInfo,setUser,setReload}
+
+  const authInfo={user,createUser,logInuser,logOut,loading,setUser,setReload}
   return (
     // context provideing for all childern 
    <AuthContext.Provider value={authInfo}>

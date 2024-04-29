@@ -10,6 +10,10 @@ import Successful from './register/successful.jsx';
 import LogIn from './log/LogIn.jsx';
 import LogOut from './log/logOut.jsx';
 import Error from './error/error.jsx';
+import PriveteRoute from './privetroute/priveteRoute.jsx';
+import CardDetails from './Home/components/cardDitails.jsx';
+import AddCraft from './addcraft/addCraft.jsx';
+import ArtAndCraft from './artAndCraft/artAndCraft.jsx';
 
 const router=createBrowserRouter([
 {
@@ -37,6 +41,19 @@ const router=createBrowserRouter([
         path: "/logout",
         element: <LogOut></LogOut>,
       },
+      {
+        path: "/artcraft",
+        element: <ArtAndCraft></ArtAndCraft>
+      },
+      {
+        path: "/details/:id", // Corrected path and added leading slash
+        loader: ({params}) =>params.id ,
+        element:<PriveteRoute><CardDetails></CardDetails></PriveteRoute>
+      },
+      {
+        path: "/addcraft",
+        element: <PriveteRoute><AddCraft></AddCraft></PriveteRoute>
+      }
     ]
 }
 ])
