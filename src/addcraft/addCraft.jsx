@@ -14,7 +14,7 @@ const AddCraft = () => {
     const imageurl=e.target.imageurl.value;
     const itemname=e.target.itemname.value;
     const itemsData={name, email, stock, price, time, rating,subcatagory,ShortDiscription,imageurl,itemname}
-    console.log(name, email, stock, price, time, rating);
+    // console.log(name, email, stock, price, time, rating);
     fetch(`http://localhost:5000/newCraft`,{
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
