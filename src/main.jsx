@@ -14,6 +14,7 @@ import PriveteRoute from './privetroute/priveteRoute.jsx';
 import CardDetails from './Home/components/cardDitails.jsx';
 import AddCraft from './addcraft/addCraft.jsx';
 import ArtAndCraft from './artAndCraft/artAndCraft.jsx';
+import CraftDetails from './artAndCraft/components/craftDetails.jsx';
 
 const router=createBrowserRouter([
 {
@@ -45,6 +46,11 @@ const router=createBrowserRouter([
         path: "/artcraft",
         element: <ArtAndCraft></ArtAndCraft>,
         loader: ()=>fetch("http://localhost:5000/newCraft")
+      },
+      {
+        path: "/craftdetails/:id",
+        loader: ({params})=>params.id,
+        element: <PriveteRoute><CraftDetails></CraftDetails></PriveteRoute>,
       },
       {
         path: "/details/:id", // Corrected path and added leading slash

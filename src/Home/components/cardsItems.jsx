@@ -56,7 +56,7 @@ const CardsItems = ({ craftdata }) => {
             to={`/details/${craftdata._id}`}
             className="btn border-none bg-sky-400 hover:bg-sky-800 hover:text-white"
           >
-            View Property
+            View Ditails
           </Link>
         </div>
       </div>

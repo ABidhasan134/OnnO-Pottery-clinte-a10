@@ -27,11 +27,11 @@ const ArtAndCraft = () => {
           {/* location and segment */}
           <div className="flex justify-between">
             <div className="flex items-center gap-2 text-xl">
-              <IoMdTime></IoMdTime>
+              <IoMdTime className='text-green-500'></IoMdTime>
               <p>{item.time} days</p>
             </div>
             <div className="flex items-center  text-xl gap-1">
-              <TbStarsFilled></TbStarsFilled>
+              <TbStarsFilled className='text-green-500'></TbStarsFilled>
               <p>{item.rating}</p>
             </div>
           </div>
@@ -39,11 +39,11 @@ const ArtAndCraft = () => {
           {/* price and status */}
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-2 text-xl">
-              <LiaMoneyBillWaveSolid></LiaMoneyBillWaveSolid>
+              <LiaMoneyBillWaveSolid className='text-green-500'></LiaMoneyBillWaveSolid>
               <p>{item.price}</p>
             </div>
             <div className="flex items-center gap-2 text-xl">
-              <IoMdPricetags></IoMdPricetags>
+              <IoMdPricetags className='text-green-500'></IoMdPricetags>
               <p>{item.stock}</p>
             </div>
           </div>
@@ -51,10 +51,10 @@ const ArtAndCraft = () => {
           {/* price and status end */}
           
           <Link
-            to={`/details/${item._id}`}
+            to={`/craftdetails/${item._id}`}
             className="btn border-none bg-sky-400 hover:bg-sky-800 hover:text-white"
           >
-            View Property
+            View Ditails
           </Link>
         </div>
       </div>
