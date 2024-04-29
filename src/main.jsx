@@ -9,6 +9,7 @@ import Home from './Home/home.jsx';
 import Successful from './register/successful.jsx';
 import LogIn from './log/LogIn.jsx';
 import LogOut from './log/logOut.jsx';
+import Error from './error/error.jsx';
 
 const router=createBrowserRouter([
 {
