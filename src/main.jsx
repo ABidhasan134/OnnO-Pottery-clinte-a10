@@ -8,6 +8,7 @@ import Register from './register/register.jsx';
 import Home from './Home/home.jsx';
 import Successful from './register/successful.jsx';
 import LogIn from './log/LogIn.jsx';
+import LogOut from './log/logOut.jsx';
 
 const router=createBrowserRouter([
 {
@@ -30,6 +31,10 @@ const router=createBrowserRouter([
       {
         path: "/login",
         element: <LogIn></LogIn>,
+      },
+      {
+        path: "/logout",
+        element: <LogOut></LogOut>,
       },
     ]
 }
