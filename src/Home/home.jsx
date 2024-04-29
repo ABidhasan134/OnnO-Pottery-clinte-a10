@@ -1,10 +1,12 @@
 import React from 'react'
+import Bannar from './components/bannar'
 
 const Home = () => {
   return (
     <div>
-      Home is here
+      <Bannar></Bannar>
     </div>
+
   )
 }
 
