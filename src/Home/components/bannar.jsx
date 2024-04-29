@@ -71,9 +71,10 @@ export default function Bannar() {
               <div >
                 <h1 className="text-5xl font-bold">Ceramic Wall Tiles</h1>
                 <p className="py-6">
-                Welcome to our exclusive luxury tour apartment company, 
-                where opulence meets convenience. We offer a curated 
-                 selection of premium properties for sale and rent, catering to discerning individuals seeking refined living experiences.
+                Welcome to our exclusive Pottery craft company! We specialize in <br />
+                creating exquisite handmade pottery pieces that add elegance and charm to any space. <br />
+                From timeless clay-made pottery to stylish stoneware, delicate porcelain, rustic terra cotta,<br />
+                 captivating ceramics & architectural designs, and enchanting home decor pottery, our collection showcases the finest craftsmanship and artistic expression.
                 </p>
                 
               </div>
@@ -98,9 +99,10 @@ export default function Bannar() {
               <div >
                 <h1 className="text-5xl font-bold">Handmade Terra Cotta Planter</h1>
                 <p className="py-6">
-                Welcome to our exclusive luxury tour apartment company, 
-                where opulence meets convenience. We offer a curated 
-                 selection of premium properties for sale and rent, catering to discerning individuals seeking refined living experiences.
+                Welcome to our exclusive Pottery craft company! We specialize in <br />
+                creating exquisite handmade pottery pieces that add elegance and charm to any space. <br />
+                From timeless clay-made pottery to stylish stoneware, delicate porcelain, rustic terra cotta,<br />
+                 captivating ceramics & architectural designs, and enchanting home decor pottery, our collection showcases the finest craftsmanship and artistic expression.
                 </p>
                 
               </div>
