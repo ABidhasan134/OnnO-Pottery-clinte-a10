@@ -25,8 +25,9 @@ const AddCraft = () => {
       if(data.acknowledged===true){
         alert("user created successfully");
       }
-      console.log(data)})
-    
+      // console.log(data)
+    })
+      form.reset();
   }
   return (
     <div>

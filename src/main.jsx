@@ -43,7 +43,8 @@ const router=createBrowserRouter([
       },
       {
         path: "/artcraft",
-        element: <ArtAndCraft></ArtAndCraft>
+        element: <ArtAndCraft></ArtAndCraft>,
+        loader: ()=>fetch("http://localhost:5000/newCraft")
       },
       {
         path: "/details/:id", // Corrected path and added leading slash

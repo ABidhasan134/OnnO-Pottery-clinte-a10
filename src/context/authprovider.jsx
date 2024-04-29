@@ -35,7 +35,7 @@ const AuthProvider = ({children}) => {
     const unsubscribe= onAuthStateChanged(auth,currentUser=>{
       // get currentUser in user state
       setUser(currentUser);
-      console.log("Inside the useEffect", currentUser);
+      // console.log("Inside the useEffect", currentUser);
       // when user is loaded then loding is false
       setLoading(false);
     })

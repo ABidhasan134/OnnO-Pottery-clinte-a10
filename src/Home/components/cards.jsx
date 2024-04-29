@@ -16,7 +16,6 @@ const Card = () => {
       {craftItems.map((item) => {
         return <CardsItems craftdata={item} key={item._id}></CardsItems>;
       })}
-      here
     </div>
   );
 };
