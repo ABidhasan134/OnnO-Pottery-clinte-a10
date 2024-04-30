@@ -1,6 +1,8 @@
 import React from 'react'
 import Bannar from './components/bannar'
 import Card from './components/cards'
+import Accordian from './components/accordian'
+import MapAddress from './components/map'
 
 const Home = () => {
   return (
@@ -12,6 +14,8 @@ const Home = () => {
        It's about discovering a place where memories are made and dreams are realized.</p>
       </div>
       <Card></Card>
+      <Accordian></Accordian>
+      <MapAddress></MapAddress>
     </div>
 
   )

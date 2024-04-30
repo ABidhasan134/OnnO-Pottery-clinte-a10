@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IoMdPricetags, IoMdTime } from 'react-icons/io';
 import { TbStarsFilled } from 'react-icons/tb';
 import { Link, useLoaderData } from 'react-router-dom'
@@ -8,9 +8,15 @@ import { LiaMoneyBillWaveSolid } from "react-icons/lia";
 
 const ArtAndCraft = () => {
     const newItems=useLoaderData();
-    console.log(newItems)
+    const [loder,setLoder]=useState(true);
+    // console.log(newItems)
   return (
     <div className="mx-2 mt-2 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 relative sm:-top-12 md:top-0 lg:top-0">
+      {
+    loder?"":<div className='flex justify-center text-5xl mt-16'>
+    <progress className="progress w-56"></progress>
+    </div>
+  }
       {newItems.map((item) => {
         return (
          <div data-aos="fade-up" data-aos-anchor-placement="top-bottom" key={item._id}>

@@ -5,11 +5,14 @@ const Footer = () => {
     <div className="mt-2">
       <footer className="footer h-cover footer-center p-10 bg-gradient-to-r from-sky-300 to-sky-100
        text-base-content rounded">
+        <div>
+          <h1 className="text-3xl font-bold">OnnO Pottery</h1>
+        </div>
         <nav className="grid grid-flow-col gap-4">
           <a className="link link-hover">About us</a>
           <a className="link link-hover">Contact</a>
-          <a className="link link-hover">Land Media</a>
-          <a className="link link-hover">Own propery</a>
+          <a className="link link-hover">Cratfter contact</a>
+          <a className="link link-hover">Craft Info</a>
         </nav>
         <nav>
           <div className="grid grid-flow-col gap-4">
@@ -49,7 +52,7 @@ const Footer = () => {
           </div>
         </nav>
         <aside>
-          <p>Copyright © 2024 - All right reserved by HomeLand Builders Ltd</p>
+          <p>Copyright © 2024 - All right reserved by OnnO pottery Ltd</p>
         </aside>
       </footer>
     </div>

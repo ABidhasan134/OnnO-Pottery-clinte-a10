@@ -1,5 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
+
+const Typewriter = ({ text }) => {
+  const [displayText, setDisplayText] = useState('');
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    // Check if typing is complete
+    if (index < text.length) {
+      const interval = setInterval(() => {
+        setDisplayText((prevText) => prevText + text[index]);
+        setIndex((prevIndex) => prevIndex + 1);
+      }, 100); // Adjust the speed of typing by changing the interval
+
+      // Clear interval when typing is complete
+      return () => clearInterval(interval);
+    }
+  }, [index, text]);
+
+  return <span>{displayText}</span>;
+};
 export default function Bannar() {
 
   return (
@@ -13,7 +33,8 @@ export default function Bannar() {
                 className="sm:h-[600px] h-[200px] rounded-lg lg:w-1/2"
               />
               <div>
-                <h1 className="text-5xl font-bold">Handcrafted Stoneware Mug</h1>
+                <h1 className="text-5xl font-bold"><Typewriter text="Handcrafted Stoneware Mug" /></h1>
+                
                 <p className="py-6">
                 Welcome to our exclusive Pottery craft company! We specialize in <br />
                 creating exquisite handmade pottery pieces that add elegance and charm to any space. <br />
@@ -41,7 +62,7 @@ export default function Bannar() {
                 className="sm:h-[600px] h-[200px] rounded-lg"
               />
               <div >
-                <h1 className="text-5xl font-bold">Stoneware</h1>
+                <h1 className="text-5xl font-bold"><Typewriter text="Stoneware" /></h1>
                 <p className="py-6">
                 Welcome to our exclusive Pottery craft company! We specialize in <br />
                 creating exquisite handmade pottery pieces that add elegance and charm to any space. <br />
@@ -69,7 +90,7 @@ export default function Bannar() {
                 className="h-auto sm:h-[600px] rounded-lg "
               />
               <div >
-                <h1 className="text-5xl font-bold">Ceramic Wall Tiles</h1>
+                <h1 className="text-5xl font-bold"><Typewriter text="Ceramic Wall Tiles" /></h1>
                 <p className="py-6">
                 Welcome to our exclusive Pottery craft company! We specialize in <br />
                 creating exquisite handmade pottery pieces that add elegance and charm to any space. <br />
@@ -97,14 +118,13 @@ export default function Bannar() {
                 className="h-auto rounded-lg"
               />
               <div >
-                <h1 className="text-5xl font-bold">Handmade Terra Cotta Planter</h1>
+                <h1 className="text-5xl font-bold"><Typewriter text="Handmade Terra Cotta Planter" /></h1>                
                 <p className="py-6">
                 Welcome to our exclusive Pottery craft company! We specialize in <br />
                 creating exquisite handmade pottery pieces that add elegance and charm to any space. <br />
                 From timeless clay-made pottery to stylish stoneware, delicate porcelain, rustic terra cotta,<br />
                  captivating ceramics & architectural designs, and enchanting home decor pottery, our collection showcases the finest craftsmanship and artistic expression.
                 </p>
-                
               </div>
             </div>
           </div>

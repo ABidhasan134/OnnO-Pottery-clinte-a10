@@ -1,4 +1,5 @@
 import React from 'react'
+import { Fade } from 'react-awesome-reveal';
 
 const AddCraft = () => {
   const handelSubmit=(e)=>{
@@ -14,7 +15,7 @@ const AddCraft = () => {
     const imageurl=e.target.imageurl.value;
     const itemname=e.target.itemname.value;
     const itemsData={name, email, stock, price, time, rating,subcatagory,ShortDiscription,imageurl,itemname}
-    // console.log(name, email, stock, price, time, rating);
+
     fetch(`http://localhost:5000/newCraft`,{
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -30,7 +31,8 @@ const AddCraft = () => {
       form.reset();
   }
   return (
-    <div>
+    <Fade>
+      <div>
     <form className='mt-2 gap-2' onSubmit={handelSubmit} >
       {/* url and name */}
           <div className='flex justify-evenly gap-2'>
@@ -61,6 +63,7 @@ const AddCraft = () => {
           <button  className=" mt-2 btn btn-primary btn-accent w-full">Accent</button>
           </form>
     </div>
+    </Fade>
   )
 }
 

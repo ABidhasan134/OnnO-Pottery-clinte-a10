@@ -17,6 +17,8 @@ import ArtAndCraft from './artAndCraft/artAndCraft.jsx';
 import CraftDetails from './artAndCraft/components/craftDetails.jsx';
 import MyList from './myList/myList.jsx';
 import UpdateInfo from './update/updateInfo.jsx';
+import Pepoles from './crafter/pepoles.jsx';
+import Blog from './Blogs/blog.jsx';
 
 const router=createBrowserRouter([
 {
@@ -72,6 +74,14 @@ const router=createBrowserRouter([
         path: "/updateInfo/:id",
         element: <PriveteRoute><UpdateInfo></UpdateInfo></PriveteRoute>,
         loader: ({params})=>params.id
+      },
+      {
+        path: "/crafter",
+        element: <Pepoles></Pepoles>
+      },
+      {
+        path: "/blogs",
+        element: <Blog></Blog>
       }
     ]
 }
