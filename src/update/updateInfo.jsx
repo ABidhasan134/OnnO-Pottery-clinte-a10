@@ -18,11 +18,11 @@ const UpdateInfo = () => {
     return <div>No property found</div>;
   }
   console.log(potteryItem);
- 
+
   const handelsubmit = (e) => {
     e.preventDefault();
     const name = e.target.username.value;
-    const email = e.target.email.value;
+    const custom = e.target.custom.value;
     const stock = e.target.stock.value;
     const price = e.target.price.value;
     const time = e.target.time.value;
@@ -33,7 +33,7 @@ const UpdateInfo = () => {
     const itemname = e.target.itemname.value;
     const updateInfo = {
       name,
-      email,
+      custom,
       stock,
       price,
       time,
@@ -43,14 +43,16 @@ const UpdateInfo = () => {
       imageurl,
       itemname,
     };
-    console.log(name, email, stock, price, time, rating);
+    // console.log(name, custom, stock, price, time, rating);
 
-    fetch(`http://localhost:5000/newCraft/${potteryItem._id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updateInfo),
-    })
-      .then((res) => res.json)
+    fetch(`http://localhost:5000/newCraft/${ potteryItem._id }`, {
+    method: "PATCH",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(updateInfo),
+})
+      .then((res) => res.json())
       .then((data) => {
         console.log(data);
         if (data.modifiedCount > 0) {
@@ -120,16 +122,16 @@ const UpdateInfo = () => {
               type="text"
               defaultValue={potteryItem.stock}
               name="stock"
-              placeholder="Stock Status"
+              placeholder="Stock In or Made to order"
               className=" mt-2 input input-bordered input-accent w-full"
               required
             />
           </div>
           <div className="w-[50%]">
-            <span>User Name</span>
+            <span>Rating</span>
             <input
               type="text"
-              defaultValue={potteryItem.name}
+              defaultValue={potteryItem.rating}
               name="rating"
               placeholder="Give rating"
               className=" mt-2 input input-bordered input-accent w-full"
@@ -154,7 +156,7 @@ const UpdateInfo = () => {
           <div className="w-[50%]">
             <span>Time</span>
             <input
-              type="text"
+              type="number"
               defaultValue={potteryItem.time}
               name="time"
               placeholder="Time needed"
@@ -179,12 +181,12 @@ const UpdateInfo = () => {
             />
           </div>
           <div className="w-[50%]">
-            <span>email</span>
+            <span>Customization</span>
             <input
-              type="email"
-              defaultValue={potteryItem.email}
-              name="email"
-              placeholder="Enter your Email"
+              type="text"
+              name="custom"
+              defaultValue={potteryItem.custom}
+              placeholder="Yes ro No"
               className=" mt-2 input input-bordered input-accent w-full"
               required
             />

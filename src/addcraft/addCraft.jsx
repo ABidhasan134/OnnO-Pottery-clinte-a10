@@ -5,7 +5,7 @@ const AddCraft = () => {
   const handelSubmit=(e)=>{
     e.preventDefault();
     const name=e.target.username.value;
-    const email=e.target.email.value;
+    const custom=e.target.custom.value;
     const stock=e.target.stock.value;
     const price=e.target.price.value;
     const time=e.target.time.value;
@@ -14,7 +14,7 @@ const AddCraft = () => {
     const ShortDiscription=e.target.ShortDiscription.value;
     const imageurl=e.target.imageurl.value;
     const itemname=e.target.itemname.value;
-    const itemsData={name, email, stock, price, time, rating,subcatagory,ShortDiscription,imageurl,itemname}
+    const itemsData={name, custom, stock, price, time, rating,subcatagory,ShortDiscription,imageurl,itemname}
 
     fetch(`http://localhost:5000/newCraft`,{
       method: 'POST',
@@ -25,10 +25,10 @@ const AddCraft = () => {
     .then(data=>{
       if(data.acknowledged===true){
         alert("user created successfully");
+        // form.reset();
       }
       // console.log(data)
     })
-      form.reset();
   }
   return (
     <Fade>
@@ -46,21 +46,21 @@ const AddCraft = () => {
           </div>
           {/* stock and rating */}
           <div className='flex justify-evenly gap-2'>
-          <input type="text" name="stock" placeholder="Stock Status" className=" mt-2 input input-bordered input-accent w-full" required/>
-         <input type="text" name="rating" placeholder="Give rating" className=" mt-2 input input-bordered input-accent w-full" required/>
+          <input type="text" name="stock" placeholder="Stock or Make to order" className=" mt-2 input input-bordered input-accent w-full" required/>
+         <input type="number" name="rating" placeholder="Give rating" className=" mt-2 input input-bordered input-accent w-full" required/>
           </div>
           {/* customization  and time*/}
           <div className='flex justify-evenly gap-2'>
           <input type="text" name="price" placeholder="price" className=" mt-2 input input-bordered input-accent w-full" required/>
-         <input type="text" name="time" placeholder="Time needed" className=" mt-2 input input-bordered input-accent w-full" required/>
+         <input type="number" name="time" placeholder="Time needed" className=" mt-2 input input-bordered input-accent w-full" required/>
           </div>
          
           {/* user */}
           <div className='flex justify-evenly gap-2'>
           <input type="text" name="username" placeholder="Enter your name" className=" mt-2 input input-bordered input-accent w-full" required/>
-         <input type="email" name="email" placeholder="Enter your Email" className=" mt-2 input input-bordered input-accent w-full" required/>
+         <input type="text" name="custom" placeholder="Yes ro No" className=" mt-2 input input-bordered input-accent w-full" required/>
           </div>
-          <button  className=" mt-2 btn btn-primary btn-accent w-full">Accent</button>
+          <button  className=" mt-2 btn btn-primary btn-accent w-full">Add Pottery</button>
           </form>
     </div>
     </Fade>
