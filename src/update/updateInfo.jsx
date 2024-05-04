@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import {AuthContext} from "../context/authprovider";
 
 const UpdateInfo = () => {
   const id = useLoaderData();
   const [carftItem, setCraftItem] = useState([]);
+  const {user}=useContext(AuthContext);
+  const email=user.email;
   useEffect(() => {
-    fetch("http://localhost:5000/newCraft")
+    fetch("https://our-pottery-hkuobw35h-abid-hasans-projects-ae907b12.vercel.app/Crafts")
       .then((res) => res.json())
       .then((data) => {
         setCraftItem(data);
-        // console.log(data);
+        console.log(data);
       });
   }, []);
 
@@ -21,37 +24,50 @@ const UpdateInfo = () => {
 
   const handelsubmit = (e) => {
     e.preventDefault();
-    const name = e.target.username.value;
-    const custom = e.target.custom.value;
-    const stock = e.target.stock.value;
+    e.preventDefault();
+    const user_name = e.target.username.value;
+    const customization = e.target.custom.value;
+    const stock_status= e.target.stock.value;
     const price = e.target.price.value;
-    const time = e.target.time.value;
+    const processing_time= e.target.time.value;
     const rating = e.target.rating.value;
-    const subcatagory = e.target.subcatagory.value;
-    const ShortDiscription = e.target.ShortDiscription.value;
-    const imageurl = e.target.imageurl.value;
-    const itemname = e.target.itemname.value;
+    const subcategory_name = e.target.subcatagory.value;
+    const short_description = e.target.ShortDiscription.value;
+    const image = e.target.imageurl.value;
+    const item_name= e.target.itemname.value;
+    const user_email =email;
     const updateInfo = {
-      name,
-      custom,
-      stock,
+      image,
+      item_name,
+      subcategory_name,
+      short_description,
       price,
-      time,
       rating,
-      subcatagory,
-      ShortDiscription,
-      imageurl,
-      itemname,
+      customization,
+      processing_time,
+      stock_status,
+      user_name,
+      user_email
     };
-    // console.log(name, custom, stock, price, time, rating);
+    console.log(image,
+      item_name,
+      subcategory_name,
+      short_description,
+      price,
+      rating,
+      customization,
+      processing_time,
+      stock_status,
+      user_name,
+      user_email);
 
-    fetch(`http://localhost:5000/newCraft/${ potteryItem._id }`, {
-    method: "PATCH",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(updateInfo),
-})
+    fetch(`https://our-pottery-hkuobw35h-abid-hasans-projects-ae907b12.vercel.app/crafts/${potteryItem._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateInfo),
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -70,7 +86,7 @@ const UpdateInfo = () => {
             <span>Image Url</span>
             <input
               type="text"
-              defaultValue={potteryItem.imageurl}
+              defaultValue={potteryItem.image}
               name="imageurl"
               placeholder="Image Url"
               className=" mt-2 input input-bordered input-accent w-full"
@@ -81,7 +97,7 @@ const UpdateInfo = () => {
             <span>Item Name</span>
             <input
               type="text"
-              defaultValue={potteryItem.itemname}
+              defaultValue={potteryItem.item_name}
               name="itemname"
               placeholder="Item name"
               className=" mt-2 input input-bordered input-accent w-full"
@@ -89,24 +105,25 @@ const UpdateInfo = () => {
             />
           </div>
         </div>
-        {/* short discription */}
+        {/* short discription  and subcatagory*/}
         <div className="flex gap-2 justify-evenly">
           <div className="w-[50%]">
-            <span>subcatagory</span>
-            <input
-              type="text"
-              defaultValue={potteryItem.subcatagory}
-              name="subcatagory"
-              placeholder="Subcatagoty"
-              className=" mt-2 input input-bordered input-accent w-full"
-              required
-            />
+            <span>Select subcatagory</span>
+            <select name="subcatagory" defaultValue={potteryItem.subcategory_name} class="mt-2 input input-bordered input-accent w-full" required>
+            <option value={potteryItem.subcategory_name}>{potteryItem.subcategory_name}</option>
+            <option value="Clay-Made pottery">Clay-made pottery</option>
+            <option value="Stoneware">Stoneware</option>
+            <option value="Porcelain">Porcelain</option>
+            <option value="Terra Cotta">Terra Cotta</option>
+            <option value="Ceramics & Architectural">Ceramics & Architectural</option>
+            <option value="Home decor pottery">Home decor pottery</option>
+          </select>
           </div>
           <div className="w-[50%]">
             <span>ShortDiscription</span>
             <input
               type="text"
-              defaultValue={potteryItem.ShortDiscription}
+              defaultValue={potteryItem.short_description}
               name="ShortDiscription"
               placeholder="Short Discription"
               className=" mt-2 input input-bordered input-accent w-full"
@@ -118,25 +135,23 @@ const UpdateInfo = () => {
         <div className="flex gap-2 justify-evenly">
           <div className="w-[50%]">
             <span>stock</span>
-            <input
-              type="text"
-              defaultValue={potteryItem.stock}
-              name="stock"
-              placeholder="Stock In or Made to order"
-              className=" mt-2 input input-bordered input-accent w-full"
-              required
-            />
+            <select name="stock" class="mt-2 input input-bordered input-accent w-full" required>
+            <option value={potteryItem.stock_status}>{potteryItem.stock_status}</option>
+            <option value="In stock">In Stock</option>
+            <option value="Make to order">Make to order</option>
+          </select>
           </div>
+
           <div className="w-[50%]">
             <span>Rating</span>
-            <input
-              type="text"
-              defaultValue={potteryItem.rating}
-              name="rating"
-              placeholder="Give rating"
-              className=" mt-2 input input-bordered input-accent w-full"
-              required
-            />
+             <select name="rating" class="mt-2 input input-bordered input-accent w-full" required>
+            <option value={potteryItem.rating}>{potteryItem.rating}</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
           </div>
         </div>
         {/* customization  and time*/}
@@ -155,14 +170,14 @@ const UpdateInfo = () => {
           </div>
           <div className="w-[50%]">
             <span>Time</span>
-            <input
-              type="number"
-              defaultValue={potteryItem.time}
-              name="time"
-              placeholder="Time needed"
-              className=" mt-2 input input-bordered input-accent w-full"
-              required
-            />
+            <select name="time" class="mt-2 input input-bordered input-accent w-full" required>
+            <option value={potteryItem.processing_time}>{potteryItem.processing_time} day</option>
+            <option value="1">1 day</option>
+            <option value="2">2 day</option>
+            <option value="3">3 day</option>
+            <option value="4">4 day</option>
+            <option value="5">5 day</option>
+          </select>
           </div>
         </div>
 
@@ -173,7 +188,7 @@ const UpdateInfo = () => {
             <span>name</span>
             <input
               type="text"
-              defaultValue={potteryItem.name}
+              defaultValue={user.displayName}
               name="username"
               placeholder="Enter your name"
               className=" mt-2 input input-bordered input-accent w-full"
@@ -182,14 +197,11 @@ const UpdateInfo = () => {
           </div>
           <div className="w-[50%]">
             <span>Customization</span>
-            <input
-              type="text"
-              name="custom"
-              defaultValue={potteryItem.custom}
-              placeholder="Yes ro No"
-              className=" mt-2 input input-bordered input-accent w-full"
-              required
-            />
+            <select name="custom" class="mt-2 input input-bordered input-accent w-full" required>
+              <option value={potteryItem.customization}>{potteryItem.customization}</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
           </div>
         </div>
 

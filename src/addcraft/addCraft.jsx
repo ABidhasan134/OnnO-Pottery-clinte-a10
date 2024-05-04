@@ -1,70 +1,183 @@
-import React from 'react'
-import { Fade } from 'react-awesome-reveal';
+import React, { useContext } from "react";
+import { Fade } from "react-awesome-reveal";
+import { AuthContext } from "../context/authprovider";
 
 const AddCraft = () => {
-  const handelSubmit=(e)=>{
+  const {user}=useContext(AuthContext)
+  const handelSubmit = (e) => {
     e.preventDefault();
-    const name=e.target.username.value;
-    const custom=e.target.custom.value;
-    const stock=e.target.stock.value;
-    const price=e.target.price.value;
-    const time=e.target.time.value;
-    const rating=e.target.rating.value;
-    const subcatagory=e.target.subcatagory.value;
-    const ShortDiscription=e.target.ShortDiscription.value;
-    const imageurl=e.target.imageurl.value;
-    const itemname=e.target.itemname.value;
-    const itemsData={name, custom, stock, price, time, rating,subcatagory,ShortDiscription,imageurl,itemname}
-
-    fetch(`http://localhost:5000/newCraft`,{
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(itemsData)
+    const user_name = e.target.username.value;
+    const customization = e.target.custom.value;
+    const stock_status= e.target.stock.value;
+    const price = e.target.price.value;
+    const processing_time= e.target.time.value;
+    const rating = e.target.rating.value;
+    const subcategory_name = e.target.subcatagory.value;
+    const short_description = e.target.ShortDiscription.value;
+    const image = e.target.imageurl.value;
+    const item_name= e.target.itemname.value;
+    const user_email =e.target.user_email.value;
+    const itemsData = {
+      image,
+      item_name,
+      subcategory_name,
+      short_description,
+      price,
+      rating,
+      customization,
+      processing_time,
+      stock_status,
+      user_name,
+      user_email
+    };
+    console.log(itemsData);
+    fetch(`https://our-pottery-hkuobw35h-abid-hasans-projects-ae907b12.vercel.app/crafts`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(itemsData),
     })
-    .then(res=>res.json())
-    .then(data=>{
-      if(data.acknowledged===true){
-        alert("user created successfully");
-        // form.reset();
-      }
-      // console.log(data)
-    })
-  }
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          alert("user created successfully");
+          // form.reset();
+        }
+        console.log(data)
+      });
+  };
   return (
     <Fade>
       <div>
-    <form className='mt-2 gap-2' onSubmit={handelSubmit} >
-      {/* url and name */}
-          <div className='flex justify-evenly gap-2'>
-          <input type="text" name="imageurl" placeholder="Image Url" className=" mt-2 input input-bordered input-accent w-full" required/>
-          <input type="text" name="itemname" placeholder="Item name" className=" mt-2 input input-bordered input-accent w-full" required/>
+        <form className="mt-2 gap-2" onSubmit={handelSubmit}>
+          {/* url and name */}
+          <div className="flex justify-evenly gap-2">
+            <input
+              type="text"
+              name="imageurl"
+              placeholder="Image Url"
+              className=" mt-2 input input-bordered input-accent w-full"
+              required
+            />
+            <input
+              type="text"
+              name="itemname"
+              placeholder="Item name"
+              className=" mt-2 input input-bordered input-accent w-full"
+              required
+            />
           </div>
-    {/* short discription */}
-          <div className='flex justify-evenly gap-2'>
-          <input type="text" name="subcatagory" placeholder="Subcatagoty" className=" mt-2 input input-bordered input-accent w-full" required/>
-         <input type="text" name="ShortDiscription" placeholder="Short Discription" className=" mt-2 input input-bordered input-accent w-full" required/>
+          {/* short discription & sub-discription*/}
+          <div className="flex justify-evenly gap-2">
+          <select name="subcatagory" class="mt-2 input input-bordered input-accent w-full" required>
+            <option value="">Select subcatagory</option>
+            <option value="Clay-Made pottery">Clay-made pottery</option>
+            <option value="Stoneware">Stoneware</option>
+            <option value="Porcelain">Porcelain</option>
+            <option value="Terra Cotta">Terra Cotta</option>
+            <option value="Ceramics & Architectural">Ceramics & Architectural</option>
+            <option value="Home decor pottery">Home decor pottery</option>
+          </select>
+            {/* <input
+              type="text"
+              name="subcatagory"
+              placeholder="Subcatagoty"
+              className=" mt-2 input input-bordered input-accent w-full"
+              required
+            /> */}
+            <input
+              type="text"
+              name="ShortDiscription"
+              placeholder="Short Discription"
+              className=" mt-2 input input-bordered input-accent w-full"
+              required
+            />
           </div>
           {/* stock and rating */}
-          <div className='flex justify-evenly gap-2'>
-          <input type="text" name="stock" placeholder="Stock or Make to order" className=" mt-2 input input-bordered input-accent w-full" required/>
-         <input type="number" name="rating" placeholder="Give rating" className=" mt-2 input input-bordered input-accent w-full" required/>
+          <div className="flex justify-evenly gap-2">
+          <select name="stock" class="mt-2 input input-bordered input-accent w-full" required>
+            <option value="">Add Stock status</option>
+            <option value="In stock">In Stock</option>
+            <option value="Make to order">Make to order</option>
+          </select>
+
+            <select name="rating" class="mt-2 input input-bordered input-accent w-full" required>
+            <option value="">Give product reatting</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          
           </div>
           {/* customization  and time*/}
-          <div className='flex justify-evenly gap-2'>
-          <input type="text" name="price" placeholder="price" className=" mt-2 input input-bordered input-accent w-full" required/>
-         <input type="number" name="time" placeholder="Time needed" className=" mt-2 input input-bordered input-accent w-full" required/>
-          </div>
-         
-          {/* user */}
-          <div className='flex justify-evenly gap-2'>
-          <input type="text" name="username" placeholder="Enter your name" className=" mt-2 input input-bordered input-accent w-full" required/>
-         <input type="text" name="custom" placeholder="Yes ro No" className=" mt-2 input input-bordered input-accent w-full" required/>
-          </div>
-          <button  className=" mt-2 btn btn-primary btn-accent w-full">Add Pottery</button>
-          </form>
-    </div>
-    </Fade>
-  )
-}
+          <div className="flex justify-evenly gap-2">
+            <input
+              type="text"
+              name="price"
+              placeholder="price"
+              className=" mt-2 input input-bordered input-accent w-full"
+              required
+            />
 
-export default AddCraft
+            <select name="time" class="mt-2 input input-bordered input-accent w-full" required>
+            <option value="">Needed Time</option>
+            <option value="1">1 day</option>
+            <option value="2">2 day</option>
+            <option value="3">3 day</option>
+            <option value="4">4 day</option>
+            <option value="5">5 day</option>
+          </select>
+            {/* <input
+              type="number"
+              name="time"
+              placeholder="Time needed"
+              className=" mt-2 input input-bordered input-accent w-full"
+              required
+            /> */}
+          </div>
+
+          {/* user */}
+          <div className="flex justify-evenly gap-2">
+            <input
+              type="text"
+              name="username"
+              placeholder="Enter your name"
+              defaultValue={user?.displayName || "username"}
+              className=" mt-2 input input-bordered input-accent w-full"
+              required
+            />
+            <select name="custom" class="mt-2 input input-bordered input-accent w-full" required>
+              <option value="">Customizable</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+
+            {/* <input
+              type="text"
+              name="custom"
+              placeholder="Yes ro No"
+              className=" mt-2 input input-bordered input-accent w-full"
+              required
+            /> */}
+          </div>
+          <div className="flex justify-evenly gap-2">
+          <input
+              type="text"
+              name="user_email"
+              placeholder="Enter your user_email"
+              defaultValue={user?.email || "Emailname"}
+              className=" mt-2 input input-bordered input-accent w-full"
+              required
+            />
+          </div>
+          <button className=" mt-2 btn btn-primary btn-accent w-full">
+            Add Pottery
+          </button>
+        </form>
+      </div>
+    </Fade>
+  );
+};
+
+export default AddCraft;

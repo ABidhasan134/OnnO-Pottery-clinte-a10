@@ -1,30 +1,30 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import AuthProvider from './context/authprovider.jsx';
-import Register from './register/register.jsx';
-import Home from './Home/home.jsx';
-import Successful from './register/successful.jsx';
-import LogIn from './log/LogIn.jsx';
-import LogOut from './log/logOut.jsx';
-import Error from './error/error.jsx';
-import PriveteRoute from './privetroute/priveteRoute.jsx';
-import CardDetails from './Home/components/cardDitails.jsx';
-import AddCraft from './addcraft/addCraft.jsx';
-import ArtAndCraft from './artAndCraft/artAndCraft.jsx';
-import CraftDetails from './artAndCraft/components/craftDetails.jsx';
-import MyList from './myList/myList.jsx';
-import UpdateInfo from './update/updateInfo.jsx';
-import Pepoles from './crafter/pepoles.jsx';
-import Blog from './Blogs/blog.jsx';
+import App from "./App.jsx";
+import Blog from "./Blogs/blog.jsx";
+import CardDetails from "./Home/components/cardDitails.jsx";
+import Home from "./Home/home.jsx";
+import AddCraft from "./addcraft/addCraft.jsx";
+import ArtAndCraft from "./artAndCraft/artAndCraft.jsx";
+import CraftDetails from "./artAndCraft/components/craftDetails.jsx";
+import AuthProvider from "./context/authprovider.jsx";
+import Pepoles from "./crafter/pepoles.jsx";
+import Error from "./error/error.jsx";
+import "./index.css";
+import LogIn from "./log/LogIn.jsx";
+import LogOut from "./log/logOut.jsx";
+import MyList from "./myList/myList.jsx";
+import PriveteRoute from "./privetroute/priveteRoute.jsx";
+import Register from "./register/register.jsx";
+import Successful from "./register/successful.jsx";
+import UpdateInfo from "./update/updateInfo.jsx";
 
-const router=createBrowserRouter([
-{
-  path: "/",
+const router = createBrowserRouter([
+  {
+    path: "/",
     element: <App></App>,
-    errorElement:<Error></Error>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/",
@@ -32,11 +32,11 @@ const router=createBrowserRouter([
       },
       {
         path: "/register",
-        element: <Register></Register>,        
+        element: <Register></Register>,
       },
       {
-        path:"/successregester",
-        element:<Successful></Successful>
+        path: "/successregester",
+        element: <Successful></Successful>,
       },
       {
         path: "/login",
@@ -49,44 +49,63 @@ const router=createBrowserRouter([
       {
         path: "/artcraft",
         element: <ArtAndCraft></ArtAndCraft>,
-        loader: ()=>fetch("http://localhost:5000/newCraft")
+        loader: () => fetch("https://our-pottery-hkuobw35h-abid-hasans-projects-ae907b12.vercel.app/crafts"),
       },
       {
         path: "/craftdetails/:id",
-        loader: ({params})=>params.id,
-        element: <PriveteRoute><CraftDetails></CraftDetails></PriveteRoute>,
+        loader: ({ params }) => params.id,
+        element: (
+          <PriveteRoute>
+            <CraftDetails></CraftDetails>
+          </PriveteRoute>
+        ),
       },
       {
         path: "/details/:id", // Corrected path and added leading slash
-        loader: ({params}) =>params.id ,
-        element:<PriveteRoute><CardDetails></CardDetails></PriveteRoute>
+        loader: ({ params }) => params.id,
+        element: (
+          <PriveteRoute>
+            <CardDetails></CardDetails>
+          </PriveteRoute>
+        ),
       },
       {
         path: "/addcraft",
-        element: <PriveteRoute><AddCraft></AddCraft></PriveteRoute>
+        element: (
+          <PriveteRoute>
+            <AddCraft></AddCraft>
+          </PriveteRoute>
+        ),
       },
       {
         path: "/mycraft",
-        element: <PriveteRoute><MyList></MyList> </PriveteRoute>,
-        loader: ()=>fetch("http://localhost:5000/newCraft")
+        element: (
+          <PriveteRoute>
+            <MyList></MyList>{" "}
+          </PriveteRoute>
+        ),
+        loader: () => fetch("https://our-pottery-hkuobw35h-abid-hasans-projects-ae907b12.vercel.app/crafts"),
       },
       {
         path: "/updateInfo/:id",
-        element: <PriveteRoute><UpdateInfo></UpdateInfo></PriveteRoute>,
-        loader: ({params})=>params.id
+        element: (
+          <PriveteRoute>
+            <UpdateInfo></UpdateInfo>
+          </PriveteRoute>
+        ),
+        loader: ({ params }) => params.id,
       },
       {
         path: "/crafter",
-        element: <Pepoles></Pepoles>
+        element: <Pepoles></Pepoles>,
       },
       {
         path: "/blogs",
-        element: <Blog></Blog>
-      }
-    ]
-}
-])
-
+        element: <Blog></Blog>,
+      },
+    ],
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
