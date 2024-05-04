@@ -6,7 +6,7 @@ const Card = () => {
 
   const [craftItems, setCraftItems] = useState([]);
   useEffect(() => {
-    fetch("https://our-pottery-hkuobw35h-abid-hasans-projects-ae907b12.vercel.app/crafts")
+    fetch("https://our-pottery.vercel.app/crafts")
       .then((res) => res.json())
       .then((data) => {
         setCraftItems(data);
@@ -23,7 +23,7 @@ const Card = () => {
           <progress className="progress w-56"></progress>
         </div>
       )}
-      {craftItems.slice(0,6).map((item) => {
+      {craftItems.slice(0, 6).map((item) => {
         return <CardsItems craftdata={item} key={item._id}></CardsItems>;
       })}
     </div>

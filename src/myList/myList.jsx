@@ -1,27 +1,30 @@
 import React, { useContext, useEffect, useState } from "react";
 import { IoMdPricetags, IoMdTime } from "react-icons/io";
+import { IoChevronDown } from "react-icons/io5";
 import { LiaMoneyBillWaveSolid } from "react-icons/lia";
 import { TbStarsFilled } from "react-icons/tb";
 import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../context/authprovider";
-import { IoChevronDown } from "react-icons/io5";
+import { Helmet } from "react-helmet";
 
 const MyList = () => {
   const newItems = useLoaderData();
   // console.log(newItems.email);
   const [carfItems, setCraftItems] = useState(newItems);
-  const [mydata,setMydata]=useState([])
+  const [mydata, setMydata] = useState([]);
   // console.log(carfItems)
   const { user } = useContext(AuthContext);
   // console.log(user.email);
 
   useEffect(() => {
-    const filteredItems = carfItems.filter((item) => item.user_email === user.email);
+    const filteredItems = carfItems.filter(
+      (item) => item.user_email === user.email
+    );
     setMydata(filteredItems);
   }, [carfItems, user.email]);
   console.log(mydata);
-  
+
   const handeldelete = (_id) => {
     console.log(_id);
     Swal.fire({
@@ -34,7 +37,7 @@ const MyList = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://our-pottery-hkuobw35h-abid-hasans-projects-ae907b12.vercel.app/${_id}`, {
+        fetch(`https://our-pottery.vercel.app/${_id}`, {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
         })
@@ -56,27 +59,35 @@ const MyList = () => {
   };
   const handelShort = (etype) => {
     if (etype === "Yes") {
-      const sortedItems = mydata.slice().sort((a, b) => b.customization.length - a.customization.length);
+      const sortedItems = mydata
+        .slice()
+        .sort((a, b) => b.customization.length - a.customization.length);
       setMydata(sortedItems);
     } else if (etype === "No") {
-      const sortedItems = mydata.slice().sort((a, b) => a.customization.length - b.customization.length);
+      const sortedItems = mydata
+        .slice()
+        .sort((a, b) => a.customization.length - b.customization.length);
       setMydata(sortedItems);
     }
   };
-  
 
   return (
-    <div >
+    <div>
+      <Helmet>
+                <meta charSet="utf-8" />
+                <title>My List</title>
+            
+            </Helmet>
       <details className="dropdown">
         <summary className="m-1 btn bg-green-500 hover:bg-green-600">
           sort by<IoChevronDown></IoChevronDown>
         </summary>
         <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
           <li>
-            <a onClick={()=>handelShort("Yes")}>YES</a>
+            <a onClick={() => handelShort("Yes")}>YES</a>
           </li>
           <li>
-            <a onClick={()=>handelShort("No")}>NO</a>
+            <a onClick={() => handelShort("No")}>NO</a>
           </li>
         </ul>
       </details>
@@ -98,7 +109,7 @@ const MyList = () => {
                 <div className="card-body">
                   <h2 className="card-title">{item.item_name}</h2>
                   <p>{item.short_description}</p>
-                  <p>Costomization:  {item.customization}</p>
+                  <p>Costomization: {item.customization}</p>
                   <hr className="border-1 border-sky-400 w-full mt-6 border-dashed" />
                   {/* location and segment */}
                   <div className="flex justify-between">
@@ -139,7 +150,6 @@ const MyList = () => {
                     Delete
                   </button>
                 </div>
-               
               </div>
             </div>
             // <div>{item.image}</div>

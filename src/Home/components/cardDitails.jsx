@@ -12,7 +12,7 @@ const CardDetails = () => {
   // console.log(id);
   // console.log(id);
   useEffect(() => {
-    fetch("https://our-pottery-hkuobw35h-abid-hasans-projects-ae907b12.vercel.app/crafts")
+    fetch("https://our-pottery.vercel.app/crafts")
       .then((res) => res.json())
       .then((data) => {
         setCraftItem(data);
@@ -79,7 +79,9 @@ const CardDetails = () => {
               <div className="flex items-center justify-between gap-2 text-xl mx-3">
                 <p>{potteryItem.user_name}</p>
                 <p>{potteryItem.user_email}</p>
-                <button className="btn bg-green-400 hover:bg-green-700 hover:text-white">Order</button>
+                <button className="btn bg-green-400 hover:bg-green-700 hover:text-white">
+                  Order
+                </button>
               </div>
             </div>
           </div>

@@ -49,7 +49,7 @@ const router = createBrowserRouter([
       {
         path: "/artcraft",
         element: <ArtAndCraft></ArtAndCraft>,
-        loader: () => fetch("https://our-pottery-hkuobw35h-abid-hasans-projects-ae907b12.vercel.app/crafts"),
+        loader: () => fetch("https://our-pottery.vercel.app/crafts"),
       },
       {
         path: "/craftdetails/:id",
@@ -84,7 +84,7 @@ const router = createBrowserRouter([
             <MyList></MyList>{" "}
           </PriveteRoute>
         ),
-        loader: () => fetch("https://our-pottery-hkuobw35h-abid-hasans-projects-ae907b12.vercel.app/crafts"),
+        loader: () => fetch("https://our-pottery.vercel.app/crafts"),
       },
       {
         path: "/updateInfo/:id",

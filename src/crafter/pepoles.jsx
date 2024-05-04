@@ -5,7 +5,7 @@ const Pepoles = () => {
   const [writerInfo, setWriterInfo] = useState([]);
   const [loder, setLoder] = useState(false);
   useEffect(() => {
-    fetch("https://our-pottery-hkuobw35h-abid-hasans-projects-ae907b12.vercel.app/artices")
+    fetch("https://our-pottery.vercel.app/artices")
       .then((res) => res.json()) // <-- Added () after res.json
       .then((data) => {
         setWriterInfo(data);

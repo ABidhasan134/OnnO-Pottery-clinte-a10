@@ -3,10 +3,16 @@ import Bannar from './components/bannar'
 import Card from './components/cards'
 import Accordian from './components/accordian'
 import MapAddress from './components/map'
+import { Helmet } from 'react-helmet'
 
 const Home = () => {
   return (
     <div>
+      <Helmet>
+                <meta charSet="utf-8" />
+                <title>Home</title>
+            
+            </Helmet>
       <Bannar></Bannar>
       <div className=" relative -top-12 md:top-0 sm:-top-16 lg:top-3  text-center">
       <h1 className="text-3xl font-bold lg:p-6 sm:p-2 p-1">Find your Dream property</h1>
